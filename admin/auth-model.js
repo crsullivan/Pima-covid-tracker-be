@@ -37,11 +37,8 @@ function findById(id) {
 
 
 function findBy(name) {
-    return db('admin').where(name).catch(error=> {
-      console.log("Error finding by name");
-      throw error;
-  });;
-  }
+  return db('users').where(name);
+}
 
 function getAll() {
     return db('admin')
