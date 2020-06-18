@@ -38,8 +38,6 @@ function findById(id) {
 
 
 function findBy(name) {
-  console.log(db('admin')
-  .where(name))
   return db('admin')
   .where(name)
   .catch(error=> {

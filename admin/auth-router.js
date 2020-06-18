@@ -25,6 +25,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) =>{
   let {name, password} = req.body
   Admin.findBy({name})
+  .first()
   .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
           const token = generateToken(user)
@@ -48,7 +49,7 @@ router.get('/lemmesee', (req, res) => {
     });
 })
 
-function getJwtToken(name, userId) {
+function generateToken(name, userId) {
     const payload = {
       name,
       userId
