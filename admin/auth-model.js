@@ -37,7 +37,7 @@ function findById(id) {
 
 
 function findBy(name) {
-  return db('users').where(name);
+  return db('admin').where(name);
 }
 
 function getAll() {
