@@ -25,6 +25,17 @@ async function add(user) {
     }
   }
 
+function findById(id) {
+    return db('users')
+    .where({id})
+    .first()
+    .catch(error=> {
+        console.log("Error finding by id");
+        throw error;
+    });
+}
+
+
 function findBy(name) {
     return db('admin').where(name);
   }
