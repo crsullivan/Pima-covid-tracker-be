@@ -28,7 +28,7 @@ router.post('/login', (req, res) =>{
   .first()
   .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-          const token = generateToken(user)
+          const token = generateToken(user.name)
           res.status(200).json({message: `Welcome ${user.name}!`, token})
       } else {
           res.status(401).json({message: "This is not a registered user"})
