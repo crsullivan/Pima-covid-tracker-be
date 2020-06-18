@@ -3,7 +3,8 @@ const db = require('../database/dbconfig.js');
 module.exports = {
     add,
     findBy,
-    getAll
+    getAll,
+    findById
 };
 
 async function add(user) {
