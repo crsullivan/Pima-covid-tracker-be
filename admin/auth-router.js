@@ -14,7 +14,7 @@ router.post('/register', (req, res) => {
   
     Admin.add(user)
       .then(user => {
-        res.status(201).json(user);
+        res.status(201).json({ message: `Admin ${user.name} registered` });
         console.log("Registered")
       })
       .catch(error => {
@@ -27,6 +27,9 @@ router.post('/register', (req, res) => {
     Admin.findBy({ name })
       .first()
       .then(user => {
+        console.log("User:", user)
+        console.log("Bcrypt stuff:", bcrypt.compareSync(password, user.password))
+        console.log("T/F:", user && bcrypt.compareSync(password, user.password))
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = getJwtToken(user.name, user.id);
           res.status(200).json({
