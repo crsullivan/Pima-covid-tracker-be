@@ -26,7 +26,7 @@ async function add(user) {
   }
 
 function findById(id) {
-    return db('users')
+    return db('admin')
     .where({id})
     .first()
     .catch(error=> {
