@@ -49,10 +49,9 @@ router.get('/lemmesee', (req, res) => {
     });
 })
 
-function generateToken(name, userId) {
+function generateToken(name) {
     const payload = {
-      name,
-      userId
+      name
     }
     const options = {
       expiresIn: '4h'
