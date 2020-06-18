@@ -46,18 +46,13 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/lemmesee', (req, res) => {
-  console.log('users here maybs before')
   Admin.getAll()
   .then(users => {
-      console.log('made it')
-      console.log('res', res)
-
       return res.json(users)
   })
   .catch(error => {
       res.status(500).json(error);
     });
-  console.log('users here maybs after')
 })
 
 function getJwtToken(name, userId) {
