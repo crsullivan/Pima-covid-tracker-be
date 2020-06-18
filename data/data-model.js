@@ -10,8 +10,11 @@ function getData(){
     .select('admin.*')
 }
 
-function addData(id, puzzle) {
-    return db('puzzles')
-        .where({ id })
-        .update(puzzle, '*')
+function addData(info) {
+    return db('data')
+        .insert({
+            ...info,
+        }).catch(e => {
+            throw e;
+        })
 }
