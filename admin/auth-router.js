@@ -8,14 +8,14 @@ const jwt = require('jsonwebtoken')
 
 router.post('/register', (req, res) => {
 
-  console.log("Register ")
   let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
   
     Admin.add(user)
-      .then(saved => {
-        res.status(201).json(saved);
+      .then(user => {
+        res.status(201).json(user);
+        console.log("Registered")
       })
       .catch(error => {
         res.status(500).json(error);
