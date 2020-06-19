@@ -26,19 +26,18 @@ async function add(user) {
   }
 }
 
-function findById(id) {
-    return db('admin')
-    .where({id})
-    .first()
-    .catch(error=> {
-        console.log("Error finding by id");
-        throw error;
-    });
+function findBy(name) {
+  return db('admin').where(name);
 }
 
-
-function findBy(name) {
-  return db('admin').where(name)
+function findById(id) {
+  return db('admin')
+    .where({ id })
+    .first()
+    .catch((error) => {
+      console.log('Error finding by id');
+      throw error;
+    });
 }
 
 function getAll() {

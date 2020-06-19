@@ -24,26 +24,25 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   let { name, password } = req.body;
-
-  Admin.findBy({ name })
-    .first()
-    .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        const token = generateToken(user.name, user.id);
-        console.log("USERID", user.id);
-        console.log("NAME", user.name)
-        res.status(200).json({
-          message: `Welcome ${user.name}!`,
-          token
-        });
-      } else {
-        res.status(401).json({ message: 'Invalid Credentials' });
-      }
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
+  
+    Admin.findBy({ name })
+      .first()
+      .then(user => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = generateToken(user.name, user.id);
+          console.log("USERID", user.id);
+          res.status(200).json({
+            message: `Welcome ${user.name}!`,
+            token
+          });
+        } else {
+          res.status(401).json({ message: 'Invalid Credentials' });
+        }
+      })
+      .catch(error => {
+        res.status(500).json(error);
+      });
+  });
 
 router.get('/lemmesee', (req, res) => {
   Admin.getAll()
@@ -55,9 +54,10 @@ router.get('/lemmesee', (req, res) => {
     });
 })
 
-function generateToken(name) {
+function generateToken(name, id) {
     const payload = {
-      name
+      name,
+      id
     }
     const options = {
       expiresIn: '4h'
