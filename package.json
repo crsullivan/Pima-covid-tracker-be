@@ -6,7 +6,9 @@
   "author": "Connor Sullivan <crsullivan@protonmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "cross-env DB_ENV=development nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest --watch",
+    "devstart": "cross-env DB_ENV=development node index.js",
     "start": "node index.js"
   },
   "dependencies": {
@@ -18,9 +20,11 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
     "node": "^14.4.0",
-    "pg": "^8.2.1"
+    "pg": "^8.2.1",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "nodemon": "^2.0.4"
   }
 }

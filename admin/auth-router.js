@@ -24,11 +24,11 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) =>{
   let {name, password} = req.body
-  Admin.findBy(name)
+  Admin.findBy({name})
   .first()
   .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-          const token = generateToken(user.name);
+          const token = generateToken(user)
           res.status(200).json({message: `Welcome ${user.name}!`, token})
       } else {
           res.status(401).json({message: "This is not a registered user"})

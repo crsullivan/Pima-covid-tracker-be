@@ -2,12 +2,15 @@ const db = require('../database/dbconfig')
 
 module.exports = {
     getData,
-    addData
+    addData,
+    removeData
 };
 
 function getData(){
-    return db('admin')
-    .select('admin.*')
+    console.log(process.env)
+    return db('data').catch(e => {
+        throw e;
+    })
 }
 
 function addData(info) {
@@ -17,4 +20,10 @@ function addData(info) {
         }).catch(e => {
             throw e;
         })
+}
+
+function removeData(id) {
+    return db('data')
+        .where('id', id)
+        .del()
 }

@@ -1,7 +1,7 @@
 module.exports = {
 
   development: {
-    client: 'pg',
+    client: 'sqlite3',
     connection: {
       filename: './database/lauras-graph.db3'
     },
@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   testing: {
-    client: "pg",
+    client: "sqlite3",
     useNullAsDefault: true,
     connection: {
         filename: "./database/test.db3"
